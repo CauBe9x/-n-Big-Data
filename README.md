@@ -47,8 +47,8 @@ GitHub không chứa dataset, mô hình và CSDL. Có hai cách lấy:
 
 | Cách | Làm gì | Thời gian |
 |---|---|---|
-| **Dùng gói dữ liệu** (nên dùng) | Giải nén `vietjobs-du-lieu-demo.zip` vào thư mục `vietjobs-app`, rồi chạy `.un.bat` | vài phút |
-| Tự chạy lại | Chạy thẳng `.un.bat`, script tự tải dataset từ Hugging Face rồi chạy pipeline | khoảng 30 phút |
+| **Dùng gói dữ liệu** (nên dùng) | Giải nén `vietjobs-du-lieu-demo.zip` vào thư mục `vietjobs-app`, rồi chạy `.\run.bat` | vài phút |
+| Tự chạy lại | Chạy thẳng `.\run.bat`, script tự tải dataset từ Hugging Face rồi chạy pipeline | khoảng 30 phút |
 
 Trang Pipeline cần thêm `python scripts/setup_spark.py` nếu muốn chạy Spark trực tiếp; không cài thì kết quả Spark có sẵn trong gói dữ liệu vẫn hiển thị, nút chạy bị khoá.
 
@@ -183,5 +183,3 @@ vietjobs-app/
 - Khoảng 29% tin không công bố lương; kết quả lương chỉ đại diện cho nhóm công bố.
 - Kỹ năng do LLM trích xuất nên còn nhiễu. Chênh lệch lương theo kỹ năng là tương quan.
 - API không có xác thực, chỉ dùng trên localhost.
-#   - n - B i g - D a t a  
- 

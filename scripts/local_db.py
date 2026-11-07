@@ -6,7 +6,7 @@ r"""Quản lý một cụm PostgreSQL RIÊNG cho đồ án, không cần Docker 
     python scripts/local_db.py dump     # sao lưu CSDL ra data/snapshot/vietjobs.dump để demo trên máy khác
     python scripts/local_db.py restore  # khôi phục từ file đó
 
-Dùng chính bộ binary PostgreSQL đã cài (tự tìm trong PATH hoặc C:\Program Files\PostgreSQL\*in; đặt PG_BIN nếu ở
+Dùng chính bộ binary PostgreSQL đã cài (tự tìm trong PATH hoặc C:\Program Files\PostgreSQL\*\bin; đặt PG_BIN nếu ở
 chỗ khác). Thư mục dữ liệu nằm ở %LOCALAPPDATA%\VietJobs\pgdata vì initdb của PostgreSQL không chạy được trên đường
 dẫn có dấu tiếng Việt như "Đồ Án BigData".
 """
