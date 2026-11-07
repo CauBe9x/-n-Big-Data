@@ -1,0 +1,42 @@
+# VietJobs – hạ tầng chạy local
+#   docker compose up -d postgres            # chỉ CSDL (bắt buộc)
+#   docker compose up -d                      # CSDL + dashboard Superset (http://localhost:8088, admin/admin)
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: vietjobs
+      POSTGRES_PASSWORD: vietjobs
+      POSTGRES_DB: vietjobs
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d:ro     # tạo thêm CSDL 'superset'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vietjobs -d vietjobs"]
+      interval: 5s
+      retries: 20
+
+  superset:
+    build: ./bi                                              # apache/superset + driver PostgreSQL
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SUPERSET_CONFIG_PATH: /app/pythonpath/superset_config.py
+      SUPERSET_METADATA_URI: postgresql+psycopg2://vietjobs:vietjobs@postgres:5432/superset
+      SUPERSET_SECRET_KEY: vietjobs-local-dev-secret-key-change-me-please
+    volumes:
+      - ./bi/superset_config.py:/app/pythonpath/superset_config.py:ro
+    ports:
+      - "8088:8088"
+    command: >
+      bash -c "superset db upgrade &&
+               (superset fab create-admin --username admin --password admin --firstname Admin --lastname VietJobs
+                 --email admin@vietjobs.local || true) &&
+               superset init &&
+               superset run -h 0.0.0.0 -p 8088 --with-threads"
+
+volumes:
+  pgdata:

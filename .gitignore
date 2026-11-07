@@ -1,0 +1,17 @@
+# Cấu hình cục bộ
+.env
+
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+frontend/dist/
+data/raw/
+data/processed/
+data/spark_output/
+data/lake/
+data/logs/
+data/snapshot/
+backend/vietjobs.db
+backend/artifacts/
+spark-warehouse/

@@ -1,0 +1,8 @@
+# Cài Superset không dùng Docker (Python 3.10 – 3.12; khuyên dùng 3.11)
+apache-superset==6.1.0
+psycopg2-binary
+# Superset 6.1.0 dùng 2 gói sau nhưng chưa khai báo phụ thuộc
+rich
+cachetools
+# flask-caching >= 2.4 không tương thích với SupersetMetastoreCache của bản 6.1.0
+flask-caching==2.3.0
